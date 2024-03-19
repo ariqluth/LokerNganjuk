@@ -67,8 +67,8 @@ include "heder.php"; // Asumsi bahwa koneksi database ada di dalam file ini atau
                                                 <td>" . htmlspecialchars($row['cv_email']) . "</td>
                                                 <td>
                                               <a href='#' data-id_cv='{$idCv}' class='btn btn-primary btn-sm show-org'>Klik</a>
-                                                    <a href='#' class='btn btn-warning btn-sm'>Lihat</a>
-                                                    <a href='#' class='btn btn-danger btn-sm'>Hapus</a>
+                                                    <a href='detail_cv.php?id={$idCv}' class='btn btn-warning btn-sm'>Lihat</a>
+                                                    <a href='#' class='btn btn-danger btn-sm' onclick='confirmDeletion({$idCv});'>Hapus</a>
                                                 </td>
                                             </tr>";
                   }
@@ -293,7 +293,6 @@ include "heder.php"; // Asumsi bahwa koneksi database ada di dalam file ini atau
                         }
                         ?>
 
-
                       </tbody>
                     </table>
                     <table>
@@ -364,6 +363,16 @@ include "heder.php"; // Asumsi bahwa koneksi database ada di dalam file ini atau
       });
     });
   });
+</script>
+
+<script>
+  function confirmDeletion(id) {
+    var confirmDelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
+    if (confirmDelete) {
+
+      window.location.href = 'hapus_cv.php?id=' + id;
+    }
+  }
 </script>
 
 
