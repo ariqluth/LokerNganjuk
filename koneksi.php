@@ -1,13 +1,14 @@
 <?php
-$host = 'localhost';
-$dbname = 'dbname';
-$username = 'root';
-$password = '';
-
+$user  = 'root';
+$pass = '';
 try {
-	$pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	// buat koneksi dengan database
+	$koneksi = new PDO('mysql:host=localhost;dbname=db_cv;', $user, $pass);
+
+	// set error mode
+	$koneksi->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	echo "Koneksi gagal: " . $e->getMessage();
+	// tampilkan pesan kesalahan jika koneksi gagal
+	print "Koneksi atau query bermasalah : " . $e->getMessage() . "<br/>";
 	die();
 }
