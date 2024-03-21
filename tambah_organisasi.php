@@ -36,7 +36,7 @@ if (isset($_POST['save_organisasi'])) {
 ?>
 
 <div class="container mt-5">
-  <h2>Data Organisasi</h2>
+  <h2 class="mb-4">Data Organisasi</h2>
   <?php if (count($organisasi) > 0): ?>
     <div class="table-responsive">
     <table class="table table-bordered table-hover">
@@ -60,7 +60,9 @@ if (isset($_POST['save_organisasi'])) {
     </table>
     </div>
   <?php else: ?>
+    <div class="alert alert-warning" role="alert">
     <p>Tidak ada data Organisasi.</p>
+    </div>
   <?php endif; ?>
 
         <h2 class="mt-5">Tambah Data Organisasi</h2>

@@ -64,7 +64,7 @@ if (isset($_FILES['dokumen_sertifikasi']) && $_FILES['dokumen_sertifikasi']['err
 ?>
 
 <div class="container mt-5">
-  <h2>Data sertifikasi</h2>
+  <h2 class="mb-4">Data sertifikasi</h2>
   <?php if (count($sertifikasi) > 0): ?>
     <div class="table-responsive">
     <table class="table table-bordered table-hover">
@@ -89,7 +89,9 @@ if (isset($_FILES['dokumen_sertifikasi']) && $_FILES['dokumen_sertifikasi']['err
     </table>
     </div>
   <?php else: ?>
+    <div class="alert alert-warning" role="alert">
     <p>Tidak ada data Sertifikasi.</p>
+    </div>
   <?php endif; ?>
 
 

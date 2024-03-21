@@ -89,7 +89,9 @@ if (isset($_FILES['dokumen_pelatihan']) && $_FILES['dokumen_pelatihan']['error']
     </table>
     </div>
   <?php else: ?>
+    <div class="alert alert-warning" role="alert">
     <p>Tidak ada data Pelatihan.</p>
+    </div>
   <?php endif; ?>
 
 

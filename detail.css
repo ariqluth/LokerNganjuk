@@ -1,0 +1,48 @@
+/* Custom Styles for Resume */
+.profile-user-img {
+    border-radius: 50%;
+    max-width: 100px;
+    height: auto;
+}
+
+.profile-username {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-body ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.card-body ul li h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+}
+
+.card-body h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-body p {
+    margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profiles {
+        flex-direction: column-reverse;
+    }
+
+    .profile-user-img {
+        margin: 0 auto 20px;
+    }
+}

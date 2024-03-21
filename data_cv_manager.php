@@ -108,7 +108,7 @@ $totalPages = ceil($rowCount['jumlah'] / $limit);
                                                 <td>" . htmlspecialchars($row['cv_email']) . "</td>
                                                 <td>
                                              
-                                                <a href='detail_cv.php?id={$row['id']}' class='btn btn-warning btn-sm'>Lihat</a>
+                                                <a href='detail_cv_manager.php?id={$row['id']}' class='btn btn-warning btn-sm'>Lihat</a>
                                              
 
                                                 </td>

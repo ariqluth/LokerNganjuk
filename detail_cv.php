@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="detail.css">
 <?php
 include "heder.php"; // Asumsi bahwa koneksi database ada di dalam file ini atau file lain yang di-include di sini
 
@@ -21,12 +22,12 @@ if (isset($_GET['id'])) {
                 WHERE id_cv = :id";
     $stmtOrg = $koneksi->prepare($sqlOrg);
 
-    $sqlPel = "SELECT nama_pelatihan, lembaga_pelatihan, tahun_pelatihan
+    $sqlPel = "SELECT nama_pelatihan, lembaga_pelatihan, tahun_pelatihan, dokumen_pelatihan
                 FROM tb_pelatihan
                 WHERE id_cv = :id";
     $stmtPel = $koneksi->prepare($sqlPel);
 
-    $sqlPed = "SELECT nama_pendidikan, jurusan_pendidikan, tahun_lulus
+    $sqlPed = "SELECT nama_pendidikan, jurusan_pendidikan, tahun_lulus, dokumen_pendidikan
                 FROM tb_pendidikan
                 WHERE id_cv = :id";
     $stmtPed = $koneksi->prepare($sqlPed);
@@ -83,7 +84,7 @@ if (isset($_GET['id'])) {
     <div class="content-wrapper">
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row profiles">
                     <!-- Right Column -->
                     <div class="col-md-8">
                         <div class="card">
@@ -122,6 +123,7 @@ if (isset($_GET['id'])) {
                                                 <h5>Nama Pelatihan : <?php echo htmlspecialchars($pel['nama_pelatihan']); ?></h5>
                                                 <p>Jabatan : <?php echo htmlspecialchars($pel['lembaga_pelatihan']); ?></p>
                                                 <p>Tahun : <?php echo htmlspecialchars($pel['tahun_pelatihan']); ?></p>
+                                                <a href="<?php echo htmlspecialchars($pel['dokumen_pelatihan']); ?>">klik download dokumen</a>
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -180,15 +182,15 @@ if (isset($_GET['id'])) {
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
                                 <div class="text-center">
-                                    <img class="profile-user-img img-fluid img-circle" src="<?php echo htmlspecialchars($cvDetail['cv_foto']); ?>" alt="User profile picture">
+                                    <img class="profile-user-img img-fluid img-circle" src="<?php echo htmlspecialchars($cvDetail['cv_foto']); ?>" alt="User profile picture" style="max-height: 100px; ">
                                 </div>
 
-                                <h3 class="profile-username text-center"> <?php echo htmlspecialchars($cvDetail['cv_nama']); ?><br><small>Front End Developer</small></h3>
+                                <h3 class="profile-username text-center"> <?php echo htmlspecialchars($cvDetail['cv_nama']); ?><br><small>Pelamar</small></h3>
 
                             </div>
                         </div>
                         <!-- Pendidikan -->
-                        <div class="card card-primary card-outline">
+                        <div class="card card-primary">
                             <div class="card-body ">
                                 <ul>
                                     <li>
@@ -197,13 +199,13 @@ if (isset($_GET['id'])) {
                                 </ul>
                                 <?php foreach ($pendidikanDetails as $ped) : ?>
                                     <h5>Nama Pendidikan : <?php echo htmlspecialchars($ped['nama_pendidikan']); ?></h5>
-                                    <p>Jurusan : <?php echo htmlspecialchars($ped['jurusan_pendidikan']); ?></p>
-                                    <p>Tahun Lulus : <?php echo htmlspecialchars($ped['tahun_lulus']); ?></p>
+                                    <div class="row  justify-content-around">
+                                        <p>Jurusan : <?php echo htmlspecialchars($ped['jurusan_pendidikan']); ?></p>
+                                        <p>Tahun Lulus : <?php echo htmlspecialchars($ped['tahun_lulus']); ?></p>
+                                        <a href="<?php echo htmlspecialchars($ped['tahun_lulus']); ?>">  klik download dokumen</a>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
-                        </div>
-                        <!-- Skill -->
-                        <div class="card card-primary card-outline">
                             <div class="card-body ">
                                 <ul>
                                     <li>
@@ -216,6 +218,7 @@ if (isset($_GET['id'])) {
 
                             </div>
                         </div>
+                       
 
                         <!-- Media Sosial -->
                         <div class="card card-primary card-outline">
@@ -226,8 +229,8 @@ if (isset($_GET['id'])) {
                                     </li>
                                 </ul>
                                 <?php foreach ($sosialMediaDetails as $med) : ?>
-                                    <h5>Jenis Sosial Media : <?php echo htmlspecialchars($med['jenis_sosial_media']); ?></h5>
-                                    <p>Nama : <?php echo htmlspecialchars($med['nama_sosial_media']); ?></p>
+                                    <p><?php echo htmlspecialchars($med['jenis_sosial_media']); ?> : <?php echo htmlspecialchars($med['nama_sosial_media']); ?></p>
+                                    
                                 <?php endforeach; ?>
 
                             </div>
@@ -242,4 +245,4 @@ if (isset($_GET['id'])) {
 </div>
 
 
-<?php include "footer.php"; ?>
+<!-- <?php include "footer.php"; ?> -->

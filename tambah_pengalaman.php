@@ -61,7 +61,9 @@ if (isset($_POST['save_pengalaman'])) {
     </table>
     </div>
   <?php else: ?>
-    <p>Tidak ada data pengalaman.</p>
+    <div class="alert alert-warning" role="alert">
+    Tidak ada data pengalaman.
+    </div>
   <?php endif; ?>
 
 
