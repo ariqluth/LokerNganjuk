@@ -1,19 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['cvId'])) {
-    header("Location: data-diri.php"); 
-    exit;
-}
-
-$cvId = $_SESSION['cvId'];
-
-if (isset($_SESSION['flash_message'])) {
-  echo $_SESSION['flash_message'];
-  unset($_SESSION['flash_message']);
-}
 
 // // Di akhir proses, setelah submit data terakhir
-// unset($_SESSION['cvId']);
+
 
 
 $currentStep = isset($_GET['step']) ? $_GET['step'] : 'data-diri';
@@ -26,18 +14,18 @@ $steps = [
     'tambah_pelatihan' => 'Pelatihan',
     'tambah_sertifikasi' => 'Sertifikasi',
     'tambah_skill' => 'Skill',
-    'tambah_sosial-media' => 'Sosial Media',
+    'tambah_sosial' => 'Sosial Media',
 ];
 
 function isActive($stepKey, $currentStep) {
-    return $stepKey === $currentStep ? 'active' : '';
+  return $stepKey === $currentStep ? 'active' : '';
 }
 
 function getNextStepKey($currentStepKey, $steps) {
   $keys = array_keys($steps);
   $currentKeyIndex = array_search($currentStepKey, $keys);
   if ($currentKeyIndex !== false && isset($keys[$currentKeyIndex + 1])) {
-      return $keys[$currentKeyIndex + 1];
+    return $keys[$currentKeyIndex + 1];
   }
   return null; 
 }
@@ -46,7 +34,7 @@ function getPreviousStepKey($currentStepKey, $steps) {
   $keys = array_keys($steps);
   $currentKeyIndex = array_search($currentStepKey, $keys);
   if ($currentKeyIndex !== false && $currentKeyIndex > 0) {
-      return $keys[$currentKeyIndex - 1];
+    return $keys[$currentKeyIndex - 1];
   }
   return null; 
 }
@@ -56,6 +44,18 @@ $previousStep = getPreviousStepKey($currentStep, $steps);
 
 
 include "heder.php";
+
+
+
+if (isset($_POST['btambah'])) {
+  header("Location: index.php");
+
+  if (isset($_SESSION['cvId'])) {
+    unset($_SESSION['cvId']);
+  }
+  exit;
+}
+
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -79,7 +79,7 @@ include "heder.php";
                 <div class="col-12">
                     <ol class="breadcrumb">
                         <?php foreach ($steps as $key => $step) : ?>
-                            <li class="breadcrumb-item <?= isActive($key, $currentStep) ?>"><?= $step ?></li>
+                            <li class="breadcrumb-item  <?= isActive($key, $currentStep) ?>"><?= $step ?></li>
                         <?php endforeach; ?>
                     </ol>
                     <div class="card card-primary">
@@ -87,23 +87,23 @@ include "heder.php";
                             <h3 class="card-title"><?= $steps[$currentStep] ?></h3>
                         </div>
 
-                        <form method="POST" action="submit.php">
+                        <!-- <form method="POST" action="submit.php"> -->
 
                 <?php include "{$currentStep}.php"; ?>
                 <div class="card-footer">
-              
-                <?php if ($previousStep !== null) : ?>
-        <a href="?step=<?= $previousStep ?>" class="btn btn-secondary">Back</a>
-    <?php endif; ?>
+                <?php if ($currentStep !== 'data-diri') : ?> 
+                 
 
-    <?php if ($nextStep !== null) : ?>
-        <a href="?step=<?= $nextStep ?>" class="btn btn-primary">Next Step</a>
-    <?php else : ?>
-        <input type="submit" name="btambah" value="Submit" class="btn btn-success">
-    <?php endif; ?>
+                  <?php if ($nextStep !== null) : ?>
+                    <a href="?step=<?= $nextStep ?>" class="btn btn-primary">Next Step</a>
+                  <?php else : ?>
+                  <a href="data_cv.php" type="submit" name="btambah" class="btn btn-success text-white">Submit</a>
+                  <?php endif; ?>
+                 <?php endif; ?>
+    
     </div>
                 
-              </form>
+              <!-- </form> -->
 
             </div>
             <!-- /.card -->

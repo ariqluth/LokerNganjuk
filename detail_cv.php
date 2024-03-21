@@ -140,9 +140,11 @@ if (isset($_GET['id'])) {
                                             </ul>
                                             <?php foreach ($pengalamanDetails as $peg) : ?>
                                                 <h5>Tempat Pengalaman : <?php echo htmlspecialchars($peg['tempat_pengalaman']); ?></h5>
-                                                <p>Tahun Mulai : <?php echo htmlspecialchars($peg['tahun_mulai_pengalaman']); ?></p>
-                                                <p>Tahun Selesai : <?php echo htmlspecialchars($peg['tahun_selesai_pengalaman']); ?></p>
                                                 <p>Deskripsi : <?php echo htmlspecialchars($peg['deskripsi_pengalaman']); ?></p>
+                                                <div class="row justify-content-around">
+                                                    <p>Tahun Mulai : <?php echo htmlspecialchars($peg['tahun_mulai_pengalaman']); ?></p>
+                                                    <p>Tahun Selesai : <?php echo htmlspecialchars($peg['tahun_selesai_pengalaman']); ?></p>
+                                                </div>
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -178,7 +180,7 @@ if (isset($_GET['id'])) {
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
                                 <div class="text-center">
-                                    <img class="profile-user-img img-fluid img-circle" src="img/removebg.png" alt="User profile picture">
+                                    <img class="profile-user-img img-fluid img-circle" src="<?php echo htmlspecialchars($cvDetail['cv_foto']); ?>" alt="User profile picture">
                                 </div>
 
                                 <h3 class="profile-username text-center"> <?php echo htmlspecialchars($cvDetail['cv_nama']); ?><br><small>Front End Developer</small></h3>

@@ -1,41 +1,4 @@
-<?php
-include "heder.php";
-
-?>
-
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Tambah Data CV</h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Data diri</li>
-                <li class="breadcrumb-item">Pendidikan</li>
-                <li class="breadcrumb-item">Pengalaman</li>
-                <li class="breadcrumb-item">Organisasi</li>
-                <li class="breadcrumb-item">Pelatihan</li>
-                <li class="breadcrumb-item">Sertifikasi</li>
-                <li class="breadcrumb-item">Skill</li>
-                <li class="breadcrumb-item">Sosial Media</li>
-            </ol>
-            <div class="card card-primary">
-              <!-- /.card-header -->
-              <div class="card-header">
-                <h3 class="card-title">Data Diri</h3>
-              </div>
+  
 <form method="POST" action="" enctype="multipart/form-data">
 
 <div class="card-body">
@@ -112,17 +75,7 @@ include "heder.php";
 </div>
                 </div>
 </form>
-</div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+
 
     <?php
 if (isset($_POST['save_cv'])) {
@@ -172,10 +125,15 @@ if (isset($_POST['save_cv'])) {
     $stmt->execute([$cvNama, $cvTempatLahir, $cvTanggalLahir, $cvJenisKelamin, $cvTinggiBadan, $cvBeratBadan, $cvAlamat, $cvHp, $cvStatus, $cvEmail, $cvDeskripsiDiri, $cvFoto]);
 
     $cvId = $koneksi->lastInsertId();
-    $_SESSION['flash_message'] = 'Data CV berhasil disimpan.';
-    header("Location: tambah_cv.php");
+    $_SESSION['cvId'] = $cvId;
+   
+
+    header("Location: tambah_cv.php?step=tambah_pendidikan");
     exit;
 }
+
+
+
  ?>
                 
       
