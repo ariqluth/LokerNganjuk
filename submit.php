@@ -1,13 +1,11 @@
 <?php
 session_start();
-include 'db.php';
+include 'koneksi.php';
 
 try {
     $pdo->beginTransaction();
     if (isset($_SESSION['cv'])) {
-        $stmt = $pdo->prepare("INSERT INTO cvs (cv_nama, cv_tempat_lahir) VALUES (?, ?)");
-        $stmt->execute([$_SESSION['cv']['cv_nama'], $_SESSION['cv']['cv_tempat_lahir']]);
-        $cvId = $pdo->lastInsertId();
+        $cvId = $_SESSION['cv_id'];
 
         if (isset($_SESSION['organisasi']) && !empty($_SESSION['organisasi'])) {
             foreach ($_SESSION['organisasi'] as $organisasi) {

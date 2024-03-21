@@ -1,10 +1,14 @@
 <?php 
+
+ob_start();
 require "koneksi.php";
 session_start();
 
+// Pastikan tidak ada echo, HTML, atau whitespace sebelum kode ini
 if(!isset($_SESSION["user"])){
   header("Location: index.php");
-} 
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,9 +105,9 @@ if(!isset($_SESSION["user"])){
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="aset/img/logo sai.jpeg" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -145,7 +149,7 @@ if(!isset($_SESSION["user"])){
             </a>
           </li>
           <li class="nav-item">
-            <a href="tambah_cv.php" class="nav-link">
+            <a href="data-diri.php" class="nav-link">
               <i class="nav-icon fas fa-plus"></i>
               <p>Tambah CV</p>
             </a>
