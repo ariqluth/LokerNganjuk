@@ -1,4 +1,14 @@
-<?php include "heder.php"; ?>
+<?php include "heder.php"; 
+if(!isset($_SESSION["user"])){
+  header("Location: index.php");
+  exit;
+}
+
+if($_SESSION["level"] !== 'admin') {
+  header("Location: index.php"); 
+  exit;
+}
+?>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -33,7 +43,6 @@
                     <th>No HP</th>
                     <th>Email</th>
                     <th>Level</th>
-                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -52,20 +61,9 @@
                     <td><?= $isi['user_hp']?></td>
                     <td><?= $isi['user_email']?></td>
                     <td><?= $isi['user_level']?></td>
-                    <td>-</td>
                   </tr>
-                  	<?php } ?>
+                  <?php } ?>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No.Hp</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->

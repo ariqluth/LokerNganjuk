@@ -1,12 +1,12 @@
 <?php
-include "heder.php"; // Asumsi bahwa koneksi database ada di dalam file ini atau file lain yang di-include di sini
+include "hedermanager.php"; // Asumsi bahwa koneksi database ada di dalam file ini atau file lain yang di-include di sini
 
 if(!isset($_SESSION["user"])){
   header("Location: index.php");
   exit;
 }
 
-if($_SESSION['level'] !== 'admin') {
+if($_SESSION['level'] !== 'manager') {
   header("Location: index.php"); 
   exit;
 }
@@ -69,7 +69,7 @@ $totalPages = ceil($rowCount['jumlah'] / $limit);
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-                <a href="tambah_cv.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah CV</a>
+               
               </div>
             </div>
             <!-- /.card-header -->
@@ -109,7 +109,7 @@ $totalPages = ceil($rowCount['jumlah'] / $limit);
                                                 <td>
                                              
                                                 <a href='detail_cv.php?id={$row['id']}' class='btn btn-warning btn-sm'>Lihat</a>
-                                                <a href='hapus_cv.php?id= {$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm('Apakah Anda yakin ingin menghapus data ini?');'>Hapus</a>
+                                             
 
                                                 </td>
                                             </tr>";

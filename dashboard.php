@@ -1,4 +1,15 @@
-<?php include "heder.php"; ?>
+<?php include "heder.php";
+
+if(!isset($_SESSION["user"])){
+  header("Location: index.php");
+  exit;
+}
+
+if($_SESSION['level'] !== 'admin') {
+  header("Location: index.php"); 
+  exit;
+}
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
